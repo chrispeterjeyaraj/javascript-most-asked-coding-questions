@@ -1,0 +1,17 @@
+{
+  "type": "module",
+  "name": "javascript-playground",
+  "description": "A Javascript practice repo. This repo has some workouts for features in javascript",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.18.13",
+    "parcel-bundler": "^1.12.5"
+  }
+}
