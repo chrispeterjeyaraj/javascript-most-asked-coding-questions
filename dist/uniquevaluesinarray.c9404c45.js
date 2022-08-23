@@ -117,79 +117,42 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"src/utils/loghelper.js":[function(require,module,exports) {
+"use strict";
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.logHelper = void 0;
+var logHelper = {
+  log: function log(value) {
+    try {
+      document.getElementById("loggerArea").value = value;
+    } catch (err) {
+      document.getElementById("loggerArea").value = err;
     }
   }
+};
+exports.logHelper = logHelper;
+},{}],"src/MostAskedInterviewQuestions/uniquevaluesinarray.js":[function(require,module,exports) {
+"use strict";
 
-  return '/';
-}
+var _loghelper = require("../utils/loghelper");
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
+var uniquevaluesinarray = function uniquevaluesinarray() {
+  var arr = [1, 5, 3, 5, 1, 2, 3, 3, 8, 8, 6, 4, 6, 4]; //const uniqueArr = [...new Set(arr)]
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+  var uniqueArr = arr.filter(function (item, index, array) {
+    console.log(array.indexOf(item), index); // to learn how this this works :)
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+    return array.indexOf(item) === index;
+  });
 
-  newLink.onload = function () {
-    link.remove();
-  };
+  _loghelper.logHelper.log(uniqueArr);
+};
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.getElementById('uniquevaluesinarray').addEventListener('click', uniquevaluesinarray);
+},{"../utils/loghelper":"src/utils/loghelper.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +356,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/javascript-playground.9ad09f98.js.map
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/MostAskedInterviewQuestions/uniquevaluesinarray.js"], null)
+//# sourceMappingURL=/uniquevaluesinarray.c9404c45.js.map
