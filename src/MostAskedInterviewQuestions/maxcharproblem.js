@@ -1,6 +1,8 @@
 import {logHelper} from "../utils/loghelper";
-const wordoccurancesinanarray = () => {
-    const arr = ["test", "dad", "look", "test", "my", "chris", "dad"];
+const maxcharproblem = () => {
+    const val = "Test everything";
+    const arr = val.replace(" ", "").split("")
+    console.log(arr)
     const output = {};
     arr.forEach(element => {
         if (output[element]) {
@@ -10,8 +12,7 @@ const wordoccurancesinanarray = () => {
     }
     });
     logHelper.log(JSON.stringify(output));
-    // logHelper.log(arr.flat(2));
 }
-document.getElementById('wordoccurancesinanarray').addEventListener('click', wordoccurancesinanarray);
+document.getElementById('maxcharproblem').addEventListener('click', maxcharproblem);
 
 
